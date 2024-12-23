@@ -6,6 +6,7 @@ TagManager:
   tags:
   - spawnPoint
   - Obstacle
+  - Train
   layers:
   - Default
   - TransparentFX

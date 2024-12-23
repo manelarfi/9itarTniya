@@ -28,7 +28,6 @@ public class FadeManager : MonoBehaviour
         {
             Debug.LogError("FadeManager: Fade Image is not assigned.");
         }
-        StartCoroutine(FadeInOutRoutine());
     }
 
     /// <summary>
