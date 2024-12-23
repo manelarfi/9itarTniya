@@ -12,7 +12,7 @@ public class ObstacleHit : MonoBehaviour
             triggerAction?.Invoke();
             // GameManager.instance.health--;
             // other.gameObject.GetComponent<Health>().currentHealth--;
-               
+            FadeManager.Instance.FadeInOut();   
         }
     }
 }
