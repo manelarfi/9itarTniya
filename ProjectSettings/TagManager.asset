@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - spawnPoint
+  - Obstacle
   layers:
   - Default
   - TransparentFX
