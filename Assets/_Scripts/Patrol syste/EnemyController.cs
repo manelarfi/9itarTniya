@@ -162,7 +162,6 @@ public class EnemyController : MonoBehaviour
         {
             _routeIndex--;
         }
-            
         if (_routeIndex == _patrolRoute.route.Count)
         {
             if (_patrolRoute.patrolType == PatrolRoute.PatrolType.Loop)
