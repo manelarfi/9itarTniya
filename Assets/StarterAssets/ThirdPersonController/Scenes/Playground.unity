@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a044c3a1d5c20ff438ddc66366c1dd24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team: 1
   head: {fileID: 1738299901}
 --- !u!195 &1351380398
 NavMeshAgent:
