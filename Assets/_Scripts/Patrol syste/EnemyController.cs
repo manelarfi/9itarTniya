@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
     private Transform _currentPoint;
     private int _routeIndex = 0;
     private bool _forwardsAlongPath = true;
-    private Vector3 _investigationPoint;
+    public Vector3 _investigationPoint;
     private float _waitTimer = 0f;
     private bool _playerFound = false;
     private float _stunnedTimer = 0f;
@@ -85,6 +85,7 @@ public class EnemyController : MonoBehaviour
     public void InvestigatePoint(Vector3 investigatePoint)
     {
         //Debug.Log("Investigate Point Triggered");
+        transform.LookAt(investigatePoint);
         SetInvestigationPoint(investigatePoint);
 
         onInvestigate.Invoke();
@@ -100,10 +101,8 @@ public class EnemyController : MonoBehaviour
 
     private void PlayerFound(Vector3 investigatePoint)
     {
-        SetInvestigationPoint(investigatePoint);
-
         onPlayerFound.Invoke(_fov.creature.head);
-        InvestigatePoint(_fov.creature.head.position);
+        InvestigatePoint(investigatePoint);
         _playerFound = true;
     }
 

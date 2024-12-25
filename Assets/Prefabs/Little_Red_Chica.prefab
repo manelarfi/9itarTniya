@@ -162,10 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibleObjects: []
-  creature: {fileID: 0}
+  creature: {fileID: 6496745603954557854}
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
   _viewRadius: 6
-  _viewAngle: 30
+  _viewAngle: 360
   _blockingLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -201,6 +201,8 @@ MonoBehaviour:
   onStunned:
     m_PersistentCalls:
       m_Calls: []
+  moveSpeed: 3
+  chaseSpeed: 5
 --- !u!114 &6496745603954557854
 MonoBehaviour:
   m_ObjectHideFlags: 0
