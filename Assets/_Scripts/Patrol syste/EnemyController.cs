@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
         Investigate = 1,
         Stunned = 2
     }
-    
+
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _threshold = 0.5f;
@@ -35,7 +35,9 @@ public class EnemyController : MonoBehaviour
     private float _waitTimer = 0f;
     private bool _playerFound = false;
     private float _stunnedTimer = 0f;
-    
+    public float moveSpeed = 3f;
+    public float chaseSpeed = 5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,17 +48,17 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         _animator.SetFloat("Speed", _agent.velocity.magnitude);
-        
+
         if (_fov.visibleObjects.Count > 0)
         {
             PlayerFound(_fov.visibleObjects[0].position);
         }
-        
+
         if (_state == EnemyState.Patrol)
         {
             UpdatePatrol();
         }
-        else if(_state == EnemyState.Investigate)
+        else if (_state == EnemyState.Investigate)
         {
             UpdateInvestigate();
         }
@@ -93,29 +95,27 @@ public class EnemyController : MonoBehaviour
         _state = EnemyState.Investigate;
         _investigationPoint = investigatePoint;
         _agent.SetDestination(_investigationPoint);
+        _agent.speed = chaseSpeed;
     }
 
     private void PlayerFound(Vector3 investigatePoint)
     {
-        if (_playerFound) return;
-        
         SetInvestigationPoint(investigatePoint);
-        
-        onPlayerFound.Invoke(_fov.creature.head);
 
+        onPlayerFound.Invoke(_fov.creature.head);
+        InvestigatePoint(_fov.creature.head.position);
         _playerFound = true;
     }
 
     private void UpdateInvestigate()
     {
-        //Debug.Log("Investigating");
-        if (Vector3.Distance(transform.position, _investigationPoint) < _threshold)
+        if (_fov.visibleObjects.Count > 0)
         {
-            _waitTimer += Time.deltaTime;
-            if (_waitTimer > _waitTime)
-            {
-                ReturnToPatrol();
-            }
+            PlayerFound(_fov.visibleObjects[0].position);
+        }
+        else
+        {
+            ReturnToPatrol();
         }
     }
 
@@ -125,7 +125,9 @@ public class EnemyController : MonoBehaviour
         _state = EnemyState.Patrol;
         _waitTimer = 0;
         _moving = false;
-        
+        _playerFound = false;
+        _agent.speed = moveSpeed;
+
         onReturnToPatrol.Invoke();
     }
 
@@ -149,7 +151,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_forwardsAlongPath)
         {
-            if(_patrolRoute.patrolType == PatrolRoute.PatrolType.Random)
+            if (_patrolRoute.patrolType == PatrolRoute.PatrolType.Random)
             {
                 _routeIndex = Random.Range(0, _patrolRoute.route.Count);
             }
@@ -168,10 +170,10 @@ public class EnemyController : MonoBehaviour
             {
                 _routeIndex = 0;
             }
-            else if(_patrolRoute.patrolType == PatrolRoute.PatrolType.PingPong)
+            else if (_patrolRoute.patrolType == PatrolRoute.PatrolType.PingPong)
             {
                 _forwardsAlongPath = false;
-                _routeIndex-=2;
+                _routeIndex -= 2;
             }
         }
 
@@ -179,9 +181,9 @@ public class EnemyController : MonoBehaviour
         {
             _forwardsAlongPath = true;
         }
-        
+
         //Debug.Log(_routeIndex);
-            
+
         _currentPoint = _patrolRoute.route[_routeIndex];
     }
 }
