@@ -13,13 +13,11 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private float _viewRadius = 6f;
     [SerializeField] private float _viewAngle = 30f;
     [SerializeField] private LayerMask _blockingLayers;
-    private EnemyController _enemyController;
     
     // Start is called before the first frame update
     void Start()
     {
         creature = GetComponent<Creature>();
-        _enemyController = GetComponent<EnemyController>();
     }
 
     // Update is called once per frame
@@ -55,7 +53,7 @@ public class FieldOfView : MonoBehaviour
                 
                 Debug.DrawLine(headPos,targetHeadPos, Color.green);
                 
-                visibleObjects.Add(target.transform);
+                visibleObjects.Add(targetCreature.head);
             }
         }
     }
