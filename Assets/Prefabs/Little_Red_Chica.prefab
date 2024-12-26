@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a04306b4b0b5e54bbe2c4b9a4520b04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.81
+      value: 2.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0a04306b4b0b5e54bbe2c4b9a4520b04, type: 3}
       propertyPath: m_LocalPosition.y
@@ -164,8 +164,8 @@ MonoBehaviour:
   visibleObjects: []
   creature: {fileID: 6496745603954557854}
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
-  _viewRadius: 6
-  _viewAngle: 360
+  _viewRadius: 6.4
+  _viewAngle: 90
   _blockingLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -201,6 +201,7 @@ MonoBehaviour:
   onStunned:
     m_PersistentCalls:
       m_Calls: []
+  _investigationPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 3
   chaseSpeed: 5
 --- !u!114 &6496745603954557854
